@@ -1,2 +1,14 @@
-/* Add application styles & imports to this file! */
 @import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+
+body {
+  background-color: black;
+}
+
+.material-icons.md-light {
+  color: rgba(255, 255, 255, 1);
+}
+
+.container {
+  height: 100vh;
+  padding: 24px;
+}

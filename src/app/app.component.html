@@ -1,11 +1,34 @@
-<button mat-raised-button color="primary" style="margin-right: 8px;">
-  Start receiving
-</button>
+<div fxLayout="row" fxLayoutAlign="center center" class="container">
+  <div fxLayoutGap="24px" fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <button mat-icon-button (click)="clear()">
+        <span
+          class="material-icons md-light"
+          matBadge="{{ msgNumber }}"
+          matBadgeColor="warn"
+          [matBadgeHidden]="isBadgeHidden()"
+          >mail_outline</span
+        >
+      </button>
+    </div>
+    <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="center center">
+      <button
+        (click)="start()"
+        mat-raised-button
+        color="primary"
+        [disabled]="hasStarted"
+      >
+        Start receiving
+      </button>
 
-<button mat-raised-button color="accent" style="margin-right: 8px;">
-  Stop receiving
-</button>
-
-<span class="material-icons" matBadge="15" matBadgeColor="warn"
-  >mail_outline</span
->
+      <button
+        (click)="stop()"
+        mat-raised-button
+        color="accent"
+        [disabled]="!hasStarted"
+      >
+        Stop receiving
+      </button>
+    </div>
+  </div>
+</div>
