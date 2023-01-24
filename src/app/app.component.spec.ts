@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
@@ -26,4 +26,48 @@ describe('AppComponent', () => {
     it('should be not started by default', () => {
         expect(component.hasStarted).toBe(false);
     });
+
+    it('should increase number of messages after start click', fakeAsync (() => {
+        component.start();
+
+        fixture.detectChanges();
+
+        tick(400);
+        expect(component.hasStarted).toBe(true);
+        expect(component.msgNumber).toBe(1);
+
+        component.stop();
+    }));
+
+    it('should stop counting after stop click', fakeAsync (() => {
+        component.start();
+
+        fixture.detectChanges();
+
+        tick(400);
+        expect(component.hasStarted).toBe(true);
+        expect(component.msgNumber).toBe(1);
+
+        component.stop();
+
+        tick(700);
+
+        expect(component.hasStarted).toBe(false);
+        expect(component.msgNumber).toBe(1);
+    }));
+
+    it('should clear number of messages after the badge click', fakeAsync (() => {
+        component.start();
+
+        fixture.detectChanges();
+
+        tick(400);
+        expect(component.hasStarted).toBe(true);
+        expect(component.msgNumber).toBe(1);
+
+        component.stop();
+        component.clear();
+
+        expect(component.msgNumber).toBe(0);
+    }));
 });
